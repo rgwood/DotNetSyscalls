@@ -7,8 +7,10 @@ class Program
     {
         var pid = GetPidUsingPInvoke();
         Console.WriteLine($"My PID from P/Invoke: {pid}");
+
         pid = GetPidUsingNativeLibrary();
         Console.WriteLine($"My PID from NativeLibrary: {pid}");
+        
         pid = GetPidUsingMonoLibrary();
         Console.WriteLine($"My PID from Mono.Posix.NETStandard: {pid}");
     }
