@@ -12,8 +12,10 @@ class Program
         pid = GetPidUsingMonoLibrary();
         Console.WriteLine($"My PID from Mono.Posix.NETStandard: {pid}");
     }
+
     [DllImport("libc", EntryPoint = "getpid")]
     private static extern int GetPidUsingPInvoke();
+
     private delegate int GetPidDelegate();
     private static int GetPidUsingNativeLibrary()
     {
@@ -22,5 +24,6 @@ class Program
         var getPidDelegate = Marshal.GetDelegateForFunctionPointer<GetPidDelegate>(symbolPtr);
         return getPidDelegate();
     }
+    
     private static int GetPidUsingMonoLibrary() => Mono.Unix.Native.Syscall.getpid();
 }
